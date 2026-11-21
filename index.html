@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learn Go</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand"><span class="dot b"></span><span class="dot w"></span>Learn Go <small>Weiqi / Baduk</small></div>
+    <nav id="tabs">
+      <button data-view="home" class="active">Home</button>
+      <button data-view="learn">Lessons</button>
+      <button data-view="play">Play a game</button>
+      <button data-view="scores">Scores</button>
+      <button data-view="glossary">Glossary</button>
+    </nav>
+  </header>
+
+  <main id="view-home" class="view home">
+    <section class="card hero">
+      <h1>Welcome to Go</h1>
+      <p class="lead">Go is a two-player strategy board game that began in China more than 2,500 years ago. It is known as <i>Weiqi</i> in China, <i>Baduk</i> in Korea and <i>Igo</i> in Japan.</p>
+      <div class="text">
+        <p>Players take turns placing <b class="b">black</b> and <b class="w">white</b> stones on the intersections of a grid. Stones never move, but a stone or group with no free neighboring points (<i>liberties</i>) is captured and removed. The goal is to surround more of the board than your opponent.</p>
+        <p>The rules fit in a few sentences, yet the strategy is so deep that Go has been called the most complex board game ever played. You can learn the rules in about fifteen minutes.</p>
+      </div>
+      <div class="choices">
+        <button class="choice primary" data-goto="play" autofocus>
+          <strong>Play a game</strong>
+          <span>Jump straight in against a beginner-level computer opponent, with a coach to help.</span>
+        </button>
+        <button class="choice" data-goto="learn">
+          <strong>Start the tutorial</strong>
+          <span>17 short interactive lessons, from your first stone to making two eyes. Best if you are new.</span>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-learn" class="view learn hidden">
+    <aside class="card lessons">
+      <h2>Lessons</h2>
+      <ol id="lessonList"></ol>
+      <button id="btnResetProgress" class="link">Reset progress</button>
+    </aside>
+    <section class="boardwrap"><svg id="learnBoard" class="board" xmlns="http://www.w3.org/2000/svg"></svg></section>
+    <section class="card panel">
+      <div class="step" id="lessonStep"></div>
+      <h2 id="lessonTitle"></h2>
+      <div id="lessonText" class="text"></div>
+      <div id="quizBox" class="quiz hidden">
+        <label id="quizQ"></label>
+        <div class="row"><input id="quizInput" type="number" min="0" max="999"><button id="btnQuiz" class="primary">Check</button></div>
+      </div>
+      <div id="lessonMsg" class="msg"></div>
+      <div class="row buttons">
+        <button id="btnPrev">&larr; Back</button>
+        <button id="btnHint">Hint</button>
+        <button id="btnReset">Reset</button>
+        <button id="btnNext" class="primary">Next &rarr;</button>
+      </div>
+    </section>
+  </main>
+
+  <main id="view-play" class="view play hidden">
+    <aside class="card panel setup">
+      <h2>New game</h2>
+      <label>Board size
+        <select id="gSize"><option value="7">7 × 7 (tiny)</option><option value="9" selected>9 × 9</option><option value="13">13 × 13</option></select>
+      </label>
+      <label>You play
+        <select id="gColor"><option value="black">Black (moves first)</option><option value="white">White</option></select>
+      </label>
+      <button id="btnNew" class="primary">Start new game</button>
+      <hr>
+      <h3>Quick rules</h3>
+      <ul class="rules">
+        <li>Take turns placing stones.</li>
+        <li>Surround stones to capture them.</li>
+        <li>No suicide, and no immediate ko recapture.</li>
+        <li>Two passes in a row end the game.</li>
+        <li>Most points (stones + territory) wins. White gets komi.</li>
+      </ul>
+    </aside>
+    <section class="boardwrap"><svg id="playBoard" class="board" xmlns="http://www.w3.org/2000/svg"></svg></section>
+    <section class="card panel">
+      <div id="gStatus" class="status"></div>
+      <div id="gCaptures" class="captures"></div>
+      <div id="gRecord" class="captures record"></div>
+      <div class="row buttons">
+        <button id="btnPass">Pass</button>
+        <button id="btnUndo">Undo</button>
+        <button id="btnSuggest">Suggest a move</button>
+        <button id="btnEnd">End &amp; score</button>
+      </div>
+      <label class="check"><input type="checkbox" id="gLibs"> Show liberty counts</label>
+      <label class="check"><input type="checkbox" id="gAutoSuggest"> Auto Suggest Move</label>
+      <h3>Coach</h3>
+      <ul id="gMsgs" class="msgs"></ul>
+    </section>
+  </main>
+
+  <main id="view-scores" class="view scores hidden">
+    <section class="card wide">
+      <h2>Your scores</h2>
+      <div id="scoreStats" class="stats"></div>
+      <h3>Game history</h3>
+      <div id="scoreHistory"></div>
+      <button id="btnClearScores" class="link">Clear history</button>
+    </section>
+  </main>
+
+  <main id="view-glossary" class="view glossary hidden">
+    <section class="card wide"><h2>Glossary</h2><dl id="glossaryList"></dl></section>
+  </main>
+
+  <script src="engine.js"></script>
+  <script src="ai.js"></script>
+  <script src="lessons.js"></script>
+  <script src="view.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
