@@ -142,7 +142,7 @@ class BoardView {
 
     if (b.lastMove !== null && b.lastMove >= 0 && b.grid[b.lastMove] !== EMPTY && !o.hideLast) {
       const c = b.grid[b.lastMove];
-      s += `<text x="${px(b.lastMove)}" y="${py(b.lastMove) + 3.5}" text-anchor="middle" font-size="11" font-weight="700" fill="${c === BLACK ? "#fff" : "#000"}" pointer-events="none">@</text>`;
+      s += `<text x="${px(b.lastMove)}" y="${py(b.lastMove) + 3.5}" text-anchor="middle" font-size="11" font-weight="700" fill="${c === BLACK ? "#fff" : "#000"}" pointer-events="none">*</text>`;
     }
 
     for (const i of dead) {
